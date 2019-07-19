@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+//import logo from "./logo.svg";
+import Budget from "./Budget.js";
+import "./App.css";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  Switch
+} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <ul>
+          <li>
+            <Link to={"/"}>Home</Link>
+          </li>
+          <li>
+            <Link to={"/budget/1"}>Budget</Link>
+          </li>
+        </ul>
+      </div>
+      <Switch>
+        <Redirect from={"/budget"} exact to={"/budget/"} />
+        <Route path={"/budget/"} exact component={Budget} />
+        <Route path="/budget/:id" render={props => <Budget {...props} />} />
+      </Switch>
+    </Router>
   );
 }
 
