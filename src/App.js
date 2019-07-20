@@ -24,9 +24,15 @@ function App() {
         </ul>
       </div>
       <Switch>
-        {/*<Redirect from={"/budget"} exact to={"/budget/"} />
-        <Route path={"/budget/"} exact component={Budget} />*/}
-        <Route path="/budget/:id" render={props => <Budget {...props} />} />
+        <Route exact path={"/budget"} component={Budget} />} />
+        {/*<Redirect from={"/budget"} exact to={"/budget/"} />*/}
+        <Route exact path={"/budget/"} component={Budget} />
+        <Route
+          exact
+          path="/budget/:id"
+          render={props => <Budget {...props} />}
+        />
+        <Redirect exact from={"/"} to={"/budget"} />
       </Switch>
     </Router>
   );

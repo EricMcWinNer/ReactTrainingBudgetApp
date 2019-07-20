@@ -300,10 +300,13 @@ class Budget extends Component {
       this.props.match.params.id !== undefined &&
       !isNaN(this.props.match.params.id)
     )
-      this.setState({
-        budget_id: this.props.match.params.id
-      });
-    this.getBudget();
+      this.setState(
+        {
+          budget_id: this.props.match.params.id
+        },
+        this.getBudget
+      );
+    else this.getBudget();
   }
 
   render() {
